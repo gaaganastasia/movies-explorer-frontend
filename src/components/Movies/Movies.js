@@ -8,7 +8,10 @@ function Movies() {
   return(
     <div className="movies">
       <SearchForm></SearchForm>
-      <MoviesCardList></MoviesCardList>
+      <MoviesCardList
+      children={
+        <><button type="button" className="movie__save-btn movie__save-btn_active"></button></>
+      }></MoviesCardList>
       <button type="button" className="movies__more-btn">Ещё</button>
     </div>
   )

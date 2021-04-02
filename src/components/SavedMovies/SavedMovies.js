@@ -8,7 +8,10 @@ function SavedMovies() {
   return(
     <div className="movies">
       <SearchForm></SearchForm>
-      <MoviesCardList></MoviesCardList>
+      <MoviesCardList
+      children={
+        <><button type="button" className="movie__delete-btn"></button></>
+      }></MoviesCardList>
       <button type="button" className="movies__more-btn">Ещё</button>
     </div>
   )
