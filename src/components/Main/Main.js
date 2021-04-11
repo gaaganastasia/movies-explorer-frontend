@@ -5,7 +5,7 @@ import Techs from "../Techs/Techs";
 import AboutMe from "../AboutMe/AboutMe";
 import Portfolio from "../Portfolio/Portfolio";
 function Main() {
-  return(
+  return (
     <div className="main">
       <Promo></Promo>
       <AboutProject></AboutProject>
@@ -13,7 +13,7 @@ function Main() {
       <AboutMe></AboutMe>
       <Portfolio></Portfolio>
     </div>
-  )
+  );
 }
 
 export default Main;

@@ -8,6 +8,7 @@
   text-decoration: none;
   color: #3456F3;
   transition: .3s;
+  cursor: pointer;
   margin: auto 0 60px;
 }
 

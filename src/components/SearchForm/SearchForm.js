@@ -1,22 +1,51 @@
 import React from "react";
 import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
-import './SearchForm.css';
+import "./SearchForm.css";
 
-function SearchForm() {
-  const [movie, setMovie] = React.useState('');
+function SearchForm(props) {
+  const movieRef = React.useRef("");
 
-  function handleSearchMovie(e) {
-    setMovie(e.target.value);
-  }
+  const [isValid, setIsValid] = React.useState(true);
 
   function handleSubmit(e) {
     e.preventDefault();
+
+    if (!movieRef.current.value || movieRef.current.value === " ") {
+      setIsValid(false);
+    } else {
+      props.setClickNumber(0);
+      props.controlCardsQuantity();
+      setIsValid(true);
+      props.getMovies();
+      props.setErr(false);
+      props.setServerErr(false);
+
+      let movies;
+
+      if (props.checkboxState) {
+        movies = props.movies.filter(
+          (movie) =>
+            movie.nameRU.toLowerCase().indexOf(movieRef.current.value) !== -1 &&
+            movie.duration <= 40
+        );
+      } else {
+        movies = props.movies.filter(
+          (movie) =>
+            movie.nameRU.toLowerCase().indexOf(movieRef.current.value) !== -1
+        );
+      }
+
+      props.setMovies(movies);
+      if (movies.length === 0) {
+        props.setErr(true);
+      }
+    }
   }
 
-  return(
+  return (
     <div className="search-form">
       <form
-        method="post"
+        method="get"
         action="index.html"
         name="search"
         className="search-form__container"
@@ -28,20 +57,28 @@ function SearchForm() {
             name="movie"
             type="text"
             placeholder="Фильм"
-            value={movie}
-            onChange={handleSearchMovie}
+            ref={movieRef}
             id="movie"
             className="search-form__input search-form__input-movie"
             required
           ></input>
+          <span
+            className={`form__input-error ${
+              !isValid ? `form__input-error_active` : ``
+            }`}
+          >
+            Нужно ввести ключевое слово
+          </span>
         </label>
         <button type="submit" className="search-form__submit">
           Найти
         </button>
       </form>
-      <FilterCheckbox></FilterCheckbox>
+      <FilterCheckbox
+        handleCheckboxState={props.handleCheckboxState}
+      ></FilterCheckbox>
     </div>
-  )
+  );
 }
 
 export default SearchForm;

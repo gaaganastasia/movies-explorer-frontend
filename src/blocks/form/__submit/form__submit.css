@@ -1,5 +1,5 @@
 .form__submit {
-  margin: 179px 0 0;
+  margin: 20px 0 0;
   width: 100%;
   border: none;
   border-radius: 3px;
@@ -25,7 +25,7 @@
 
 @media screen and (min-width: 320px) and (max-width: 767px) {
   .form__submit {
-    margin: 157px 0 0;
+    margin: 20px 0 0;
     font-size: 12px;
     line-height: 15px;
   }

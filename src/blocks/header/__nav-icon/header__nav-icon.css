@@ -15,13 +15,13 @@
   opacity: .8;
 }
 
-@media screen and (min-width: 320px) and (max-width: 1024px) {
+@media screen and (min-width: 320px) and (max-width: 768px) {
   .header__nav-icon {
     display: block;
   }
 }
 
-@media screen and (min-width: 1025px) {
+@media screen and (min-width: 769px) {
   .header__nav-icon {
     display: none;
   }

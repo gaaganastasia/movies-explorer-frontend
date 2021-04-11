@@ -1,5 +1,5 @@
 .profile-form__submit {
-  margin: 220px 0 50px;
+  margin: 20px 0 50px;
   width: 100%;
   border: none;
   border-radius: 3px;
@@ -26,7 +26,7 @@
 
 @media screen and (min-width: 320px) and (max-width: 767px) {
   .profile-form__submit {
-    margin: 370px 0 50px;
+    margin: 20px 0 50px;
     font-size: 12px;
     line-height: 15px;
   }

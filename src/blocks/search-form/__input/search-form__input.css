@@ -14,6 +14,10 @@
   background-color: #fafafa;
 }
 
+input:-webkit-autofill {
+  -webkit-box-shadow: inset 0 0 0 50px #fafafa !important; /* Цвет фона */
+}
+
 @media screen and (min-width: 767px) and (max-width: 1024px) {
   .search-form__input {
     width: 628px;
