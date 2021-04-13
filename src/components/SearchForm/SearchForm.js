@@ -3,7 +3,7 @@ import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
 import "./SearchForm.css";
 
 function SearchForm(props) {
-  const movieRef = React.useRef("");
+  const movieRef = React.useRef('');
 
   const [isValid, setIsValid] = React.useState(true);
 
@@ -16,7 +16,6 @@ function SearchForm(props) {
       props.setClickNumber(0);
       props.controlCardsQuantity();
       setIsValid(true);
-      props.getMovies();
       props.setErr(false);
       props.setServerErr(false);
 
@@ -25,15 +24,17 @@ function SearchForm(props) {
       if (props.checkboxState) {
         movies = props.movies.filter(
           (movie) =>
-            movie.nameRU.toLowerCase().indexOf(movieRef.current.value) !== -1 &&
+            movie.nameRU.toLowerCase().indexOf(movieRef.current.value.toLowerCase()) !== -1 &&
             movie.duration <= 40
         );
       } else {
         movies = props.movies.filter(
           (movie) =>
-            movie.nameRU.toLowerCase().indexOf(movieRef.current.value) !== -1
+            movie.nameRU.toLowerCase().indexOf(movieRef.current.value.toLowerCase()) !== -1
         );
       }
+
+      localStorage.setItem('movies', JSON.stringify(movies));
 
       props.setMovies(movies);
       if (movies.length === 0) {

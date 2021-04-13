@@ -42,6 +42,7 @@ function Register(props) {
             id="name"
             className="form__input form__input-name"
             required
+            disabled={props.isFormDisabled}
           ></input>
           <span
             className={`form__input-error ${
@@ -61,6 +62,7 @@ function Register(props) {
             id="email"
             className="form__input form__input-email"
             required
+            disabled={props.isFormDisabled}
           ></input>
           <span
             className={`form__input-error ${
@@ -81,6 +83,7 @@ function Register(props) {
             id="password"
             className="form__input form__input-password"
             required
+            disabled={props.isFormDisabled}
           ></input>
           <span
             className={`form__input-error ${
@@ -101,8 +104,8 @@ function Register(props) {
         </span>
         <button
           type="submit"
-          className={`form__submit ${isValid ? `` : `form__submit_disabled`}`}
-          disabled={!isValid}
+          className={`form__submit ${isValid && !props.isFormDisabled ? `` : `form__submit_disabled`}`}
+          disabled={!isValid && props.isFormDisabled}
         >
           Зарегистрироваться
         </button>

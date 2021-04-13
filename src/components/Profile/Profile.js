@@ -7,11 +7,15 @@ import "./Profile.css";
 
 function Profile(props) {
   const currentUser = React.useContext(CurrentUserContext);
-  const { values, handleChange, errors, isValid, resetForm } = validator();
+  const { values, handleChange, errors, isValid } = validator();
   const [isFormStateActive, setIsFormStateActive] = React.useState(false);
 
   function editProfile() {
     setIsFormStateActive(true);
+    props.setIsMessageVisible(false);
+    props.setMessage('');
+    props.setIsErrorVisible(false);
+    props.setError('');
   }
 
   function handleSubmit(e) {
@@ -22,12 +26,7 @@ function Profile(props) {
       email: values.email || currentUser.email,
     });
 
-    if (props.error) {
-      resetForm();
-      setIsFormStateActive(false);
-    } else {
-      setIsFormStateActive(true);
-    }
+    setIsFormStateActive(false);
   }
 
   function signOut() {
@@ -56,7 +55,7 @@ function Profile(props) {
             type="text"
             minLength="2"
             id="profile-name-input"
-            disabled={!isFormStateActive}
+            disabled={!isFormStateActive || props.isFormDisabled}
           ></input>
         </label>
         <span
@@ -77,7 +76,7 @@ function Profile(props) {
             onChange={handleChange}
             minLength="2"
             id="profile-name-input"
-            disabled={!isFormStateActive}
+            disabled={!isFormStateActive || props.isFormDisabled}
           ></input>
         </label>
         <span
@@ -91,24 +90,26 @@ function Profile(props) {
 
         <span
           className={`form__submit-error ${
-            props.isErrorVisible ? `form__submit-error_active` : ``
+            props.isErrorVisible || props.isMessageVisible ? `form__submit-error_active` : ``
           }`}
         >
-          {props.error}
+          {props.error || props.message}
         </span>
         <button
           type="submit"
           className={`profile-form__submit ${
             isFormStateActive ? `profile-form__submit_visible` : ``
           } ${
-            isValid &&
+            (isValid &&
             (values.name !== currentUser.name ||
-              values.email !== currentUser.email)
+              values.email !== currentUser.email)) ||
+              props.isFormDisabled
               ? ``
               : `profile-form__submit_disabled`
           }`}
           disabled={
             !isValid ||
+            props.isFormDisabled ||
             (values.name === currentUser.name &&
               values.email === currentUser.email)
           }

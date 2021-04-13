@@ -16,12 +16,12 @@ function MoviesCardList(props) {
             if (
               movie.image &&
               (movie.trailerLink || movie.trailer) &&
-              movie.duration <= 40
+              movie.duration <= props.ShortMovieDuration
             ) {
               return (
                 <MoviesCard
                   movie={movie}
-                  key={i}
+                  key={movie.movieId || movie.id}
                   onSave={() => props.changeMovieState(movie)}
                   savedMovies={props.savedMovies}
                 />

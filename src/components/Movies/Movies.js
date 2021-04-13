@@ -13,7 +13,9 @@ function Movies(props) {
     props.getMovies();
   }, []);
 
-  const [searchedMovies, setSearchedMovies] = React.useState([]);
+  const actualMovies = JSON.parse(localStorage.getItem('movies'));
+
+  const [searchedMovies, setSearchedMovies] = React.useState(actualMovies ? actualMovies : []);
 
   function handleSearchedMovies(movies) {
     setSearchedMovies(movies);
@@ -70,6 +72,7 @@ function Movies(props) {
             setClickNumber={props.setClickNumber}
             checkboxState={props.checkboxState}
             changeMovieState={(movie) => props.changeMovieState(movie)}
+            ShortMovieDuration={props.ShortMovieDuration}
           ></MoviesCardList>
         </>
       )}

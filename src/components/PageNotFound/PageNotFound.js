@@ -1,7 +1,10 @@
 import React from "react";
 import "./PageNotFound.css";
+import { useRouteMatch } from "react-router-dom";
 
 function PageNotFound(props) {
+  const { path, url } = useRouteMatch();
+
   function goBack() {
     props.history.goBack();
   }

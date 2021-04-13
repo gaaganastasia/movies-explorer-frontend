@@ -1,5 +1,5 @@
 import React from "react";
-import { Redirect, Route, Switch, useHistory } from "react-router-dom";
+import { Redirect, Route, Switch, useHistory, useParams } from "react-router-dom";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Movies from "../Movies/Movies";
@@ -15,6 +15,12 @@ import moviesApi from "../../utils/MoviesApi";
 import mainApi from "../../utils/MainApi";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+
+import {
+  ShortMovieDuration,
+  DesktopMoviesNumber,
+  MobileMoviesNumber
+} from '../../utils/constants';
 
 function App() {
   const history = useHistory();
@@ -44,6 +50,8 @@ function App() {
     }
   }
 
+  const [isFormDisabled, setIsFormDisabled] = React.useState(false);
+
   React.useEffect(() => {
     tokenCheck();
   }, [loggedIn]);
@@ -51,6 +59,7 @@ function App() {
   function handleLogin(email, password) {
     setError("");
     setIsErrorVisible(false);
+    setIsFormDisabled(true);
 
     mainApi
       .authorize(email, password)
@@ -67,12 +76,16 @@ function App() {
         setError("Вы ввели неправильный логин или пароль.");
         setIsErrorVisible(true);
         return err;
-      });
+      })
+      .finally(() => {
+        setIsFormDisabled(false);
+      })
   }
 
   function handleSignUp(name, email, password) {
     setError("");
     setIsErrorVisible(false);
+    setIsFormDisabled(true);
 
     mainApi
       .register(name, email, password)
@@ -87,6 +100,8 @@ function App() {
         return err;
       })
       .finally(() => {
+        setIsFormDisabled(false);
+
         mainApi
           .authorize(email, password)
           .then((res) => {
@@ -108,10 +123,9 @@ function App() {
 
   function handleLogOut() {
     setLoggedIn(false);
+    localStorage.removeItem('movies');
     history.push("/");
   }
-
-  ////////////////////////////////////////////////
 
   const [isNavOpen, setNavState] = React.useState(false);
   const changeNavState = () => {
@@ -179,9 +193,11 @@ function App() {
     }
   }
 
+  const [message, setMessage] = React.useState('');
+  const [isMessageVisible, setIsMessageVisible] = React.useState(false);
+
   function handleUpdateUserInfo(data) {
-    setError("");
-    setIsErrorVisible(false);
+    setIsFormDisabled(true);
 
     mainApi
       .setProfileInfo(data.email, data.name)
@@ -193,18 +209,27 @@ function App() {
           setCurrentUser(res);
           setError("");
           setIsErrorVisible(false);
+          setMessage('Данные профиля успешно обновлены.');
+          setIsMessageVisible(true);
         }
         return res;
       })
       .catch((err) => {
         return err;
-      });
+      })
+      .finally(() => {
+        setIsFormDisabled(false);
+      })
   }
 
   const [screenWidth, setScreenWidth] = React.useState(window.innerWidth);
 
+  function getScreenWidth() {
+    setScreenWidth(window.innerWidth);
+  }
+
   function handleScreenWidth() {
-    window.addEventListener("resize", () => setScreenWidth(window.innerWidth));
+    window.addEventListener("resize", getScreenWidth);
   }
 
   React.useEffect(() => {
@@ -222,11 +247,11 @@ function App() {
     let n;
 
     if (screenWidth >= 1280) {
-      n = 12 + clickNumber * 3;
+      n = 12 + clickNumber * DesktopMoviesNumber;
     } else if (screenWidth < 1280 && screenWidth >= 768) {
-      n = 8 + clickNumber * 2;
+      n = 8 + clickNumber * MobileMoviesNumber;
     } else if (screenWidth < 768) {
-      n = 5 + clickNumber * 2;
+      n = 5 + clickNumber * MobileMoviesNumber;
     }
 
     return setCardsQuantity(n);
@@ -253,18 +278,25 @@ function App() {
 
           <ProtectedRoute
             path="/profile"
-            component={Profile}
+            component={loggedIn ? Profile : Main}
             loggedIn={loggedIn}
             onLogOut={handleLogOut}
             history={history}
             onUpdateUserInfo={handleUpdateUserInfo}
             error={error}
+            setError={setError}
+            setIsErrorVisible={setIsErrorVisible}
             isErrorVisible={isErrorVisible}
+            message={message}
+            setMessage={setMessage}
+            isMessageVisible={isMessageVisible}
+            setIsMessageVisible={setIsMessageVisible}
+            isFormDisabled={isFormDisabled}
           ></ProtectedRoute>
 
           <ProtectedRoute
             path="/movies"
-            component={Movies}
+            component={loggedIn ? Movies : Main}
             loggedIn={loggedIn}
             isLoading={isLoading}
             setClickNumber={setClickNumber}
@@ -281,11 +313,12 @@ function App() {
             getMovies={getMovies}
             getSavedMovies={getSavedMovies}
             screenWidth={screenWidth}
+            ShortMovieDuration={ShortMovieDuration}
           ></ProtectedRoute>
 
           <ProtectedRoute
             path="/saved-movies"
-            component={SavedMovies}
+            component={loggedIn ? SavedMovies : Main}
             movies={savedMovies}
             isLoading={isLoading}
             setClickNumber={setClickNumber}
@@ -301,6 +334,7 @@ function App() {
             screenWidth={screenWidth}
             controlCardsQuantity={controlCardsQuantity}
             cardsQuantity={cardsQuantity}
+            ShortMovieDuration={ShortMovieDuration}
           ></ProtectedRoute>
 
           <Route path="/signin">
@@ -314,6 +348,7 @@ function App() {
                 isErrorVisible={isErrorVisible}
                 onLogin={handleLogin}
                 //tokenCheck={tokenCheck}
+                isFormDisabled={isFormDisabled}
               ></Login>
             )}
           </Route>
@@ -327,6 +362,7 @@ function App() {
                 error={error}
                 isErrorVisible={isErrorVisible}
                 onRegister={handleSignUp}
+                isFormDisabled={isFormDisabled}
               ></Register>
             )}
           </Route>

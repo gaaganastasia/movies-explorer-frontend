@@ -72,6 +72,7 @@ function SavedMovies(props) {
           checkboxState={props.checkboxState}
           screenWidth={props.screenWidth}
           changeMovieState={(movie) => props.changeMovieState(movie)}
+          ShortMovieDuration={props.ShortMovieDuration}
         ></MoviesCardList>
       )}
     </div>
