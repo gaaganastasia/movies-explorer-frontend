@@ -1,0 +1,29 @@
+{
+  "files": {
+    "main.css": "/movies-explorer-frontend/static/css/main.c7a2f915.chunk.css",
+    "main.js": "/movies-explorer-frontend/static/js/main.18b3458d.chunk.js",
+    "main.js.map": "/movies-explorer-frontend/static/js/main.18b3458d.chunk.js.map",
+    "runtime-main.js": "/movies-explorer-frontend/static/js/runtime-main.1d600196.js",
+    "runtime-main.js.map": "/movies-explorer-frontend/static/js/runtime-main.1d600196.js.map",
+    "static/js/2.22057f95.chunk.js": "/movies-explorer-frontend/static/js/2.22057f95.chunk.js",
+    "static/js/2.22057f95.chunk.js.map": "/movies-explorer-frontend/static/js/2.22057f95.chunk.js.map",
+    "index.html": "/movies-explorer-frontend/index.html",
+    "static/css/main.c7a2f915.chunk.css.map": "/movies-explorer-frontend/static/css/main.c7a2f915.chunk.css.map",
+    "static/js/2.22057f95.chunk.js.LICENSE.txt": "/movies-explorer-frontend/static/js/2.22057f95.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/movies-explorer-frontend/static/media/Inter-Regular.e148c4a1.woff",
+    "static/media/Navigation.css": "/movies-explorer-frontend/static/media/close-icon.3c0cd848.svg",
+    "static/media/MoviesCard.css": "/movies-explorer-frontend/static/media/save-icon.e8308c9f.svg",
+    "static/media/header-logo.250bb8ba.svg": "/movies-explorer-frontend/static/media/header-logo.250bb8ba.svg",
+    "static/media/landing-logo.bf2d5da6.svg": "/movies-explorer-frontend/static/media/landing-logo.bf2d5da6.svg",
+    "static/media/link-icon.2f133fb2.svg": "/movies-explorer-frontend/static/media/link-icon.2f133fb2.svg",
+    "static/media/Header.css": "/movies-explorer-frontend/static/media/nav-icon.08035af1.svg",
+    "static/media/photo.137ba374.jpg": "/movies-explorer-frontend/static/media/photo.137ba374.jpg",
+    "static/media/profile.c9f114e1.svg": "/movies-explorer-frontend/static/media/profile.c9f114e1.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.1d600196.js",
+    "static/js/2.22057f95.chunk.js",
+    "static/css/main.c7a2f915.chunk.css",
+    "static/js/main.18b3458d.chunk.js"
+  ]
+}
