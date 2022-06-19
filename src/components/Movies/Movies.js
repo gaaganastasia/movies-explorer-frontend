@@ -44,7 +44,7 @@ function Movies(props) {
         handleCheckboxState={props.handleCheckboxState}
       ></SearchForm>
 
-      {props.isLoading ? (
+      {(props.isLoading || searchedMovies.length === 0) && !isNotFoundErrVisible && !props.serverErr ? (
         <Preloader></Preloader>
       ) : (
         <>

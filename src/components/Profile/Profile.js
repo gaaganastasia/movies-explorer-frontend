@@ -44,6 +44,7 @@ function Profile(props) {
         action="index.html"
         onSubmit={handleSubmit}
         noValidate
+        autoComplete="off"
       >
         <label className="profile-form__field">
           <p className="profile-form__input-name">Имя</p>

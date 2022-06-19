@@ -31,6 +31,7 @@ function Login(props) {
         className="form__container"
         onSubmit={handleSubmit}
         noValidate
+        autoComplete="off"
       >
         <label className="form__field" htmlFor="email">
           <p className="form__input-title">E-mail</p>

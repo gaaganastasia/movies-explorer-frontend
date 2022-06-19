@@ -31,6 +31,7 @@ function Register(props) {
         className="form__container"
         onSubmit={handleSubmit}
         noValidate
+        autoComplete="off"
       >
         <label className="form__field" htmlFor="name">
           <p className="form__input-title">Имя</p>

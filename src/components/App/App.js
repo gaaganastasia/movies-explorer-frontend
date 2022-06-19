@@ -273,7 +273,7 @@ function App() {
         />
         <Switch>
           <Route exact path="/">
-            {loggedIn ? <Redirect to="movies" /> : <Main></Main>}
+            {loggedIn ? <Redirect to="movies" /> : <Redirect to="signin" />}
           </Route>
 
           <ProtectedRoute

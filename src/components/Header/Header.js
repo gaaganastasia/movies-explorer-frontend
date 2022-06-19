@@ -9,7 +9,7 @@ function Header(props) {
 
   const headerClassName = `header ${
     props.history.location.pathname === "/"
-      ? `header_landing header_visible`
+      ? ``
       : ``
   } 
   ${

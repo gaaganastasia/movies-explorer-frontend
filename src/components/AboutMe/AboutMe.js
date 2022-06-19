@@ -10,9 +10,9 @@ function AboutMe() {
         <h3 className="about-me__name">Анастасия</h3>
         <p className="about-me__age">Фронтенд-разработчик, 18 лет</p>
         <p className="about-me__info">
-          Я живу в Красноярске, заканчиваю 11 класс КГАОУ "ШК". Люблю слушать
-          музыку и увлекаюсь теннисом. Недавно начала заниматься веб-разработкой
-          и планирую продолжать развиваться в этой сфере.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
         </p>
         <img className="about-me__photo" src={photo} alt="Моё фото"></img>
         <div className="about-me__media">

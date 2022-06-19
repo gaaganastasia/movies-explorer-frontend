@@ -52,6 +52,7 @@ function SearchForm(props) {
         className="search-form__container"
         onSubmit={handleSubmit}
         noValidate
+        autoComplete="off"
       >
         <label className="search-form__field" htmlFor="movie">
           <input
