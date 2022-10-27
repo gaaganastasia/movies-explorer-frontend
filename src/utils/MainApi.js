@@ -173,7 +173,7 @@ class Api {
 }
 
 const api = new Api({
-  url: "https://api.gh-movies-explorer.nomoredomains.icu",
+  url: "https://movies-explorer-api-zeta.vercel.app",
   headers: {
     "Content-Type": "application/json",
     Accept: "application/json",
