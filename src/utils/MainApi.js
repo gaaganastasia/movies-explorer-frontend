@@ -174,7 +174,6 @@ class Api {
 
 const api = new Api({
   url: "https://movies-explorer-api-zeta.vercel.app/",
-  mode: 'no-cors',
   headers: {
     "Content-Type": "application/json",
     Accept: "application/json",
